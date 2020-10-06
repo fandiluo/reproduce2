@@ -5,37 +5,31 @@ export default function Home() {
   return (
       <>
         <div className="h-screen flex overflow-hidden bg-white">
-          <div className="md:hidden">
+          <Transition show={isOpen} className="md:hidden">
             <div className="fixed inset-0 flex z-40">
 
-              <Transition
-                  show={isOpen}
+              <Transition.Child
                   enter="transition-opacity easeLinear duration-300"
                   enterFrom="opacity-0"
                   enterTo="opacity-100"
                   leave="transition-opacity easeLinear duration-300"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
+                  className="fixed inset-0"
               >
+                  <div className="absolute inset-0 bg-gray-600 opacity-75"></div>
+              </Transition.Child>
 
-                <div className="fixed inset-0">
-                  <div className="absolute inset-0 bg-gray-600 opacity-75">
-                  </div>
-
-                </div>
-              </Transition>
-
-
-              <Transition
-                  show={isOpen}
+              <Transition.Child
                   enter="transition ease-in-out duration-300 transform"
                   enterFrom="-translate-x-full"
                   enterTo="translate-x-0"
                   leave="transition ease-in-out duration-300 transform"
                   leaveFrom="translate-x-0"
                   leaveTo="-translate-x-full"
+                  className="relative flex-1 flex flex-col max-w-xs w-full bg-white"
               >
-                <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+                
                   <div className="absolute top-0 right-0 -mr-14 p-1">
                     <button onClick={() => setIsOpen(!isOpen)}
                             className="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
@@ -146,13 +140,13 @@ export default function Home() {
                       </div>
                     </a>
                   </div>
-                </div>
-              </Transition>
+             
+              </Transition.Child>
               <div className="flex-shrink-0 w-14">
 
               </div>
             </div>
-          </div>
+          </Transition>
 
 
           <div className="hidden md:flex md:flex-shrink-0">
